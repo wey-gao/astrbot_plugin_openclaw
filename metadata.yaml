@@ -1,0 +1,15 @@
+name: astrbot_plugin_openclaw
+display_name: OpenClaw 薄壳插件
+desc: 在 AstrBot 中自动部署并托管 OpenClaw（小龙虾）智能体网关：一键安装、指令派活、生命周期绑定、进程看门狗与运行护栏，关闭后不留残存进程。
+help: |
+  【指令】
+  /claw <任务>        向 OpenClaw 派发任务
+  /claw_install       安装整套环境并启动
+  /claw_start         启动网关与薄壳
+  /claw_stop          停止服务并清理残存
+  /claw_status        查看安装与运行状态
+  模型、Key、安装目录等均在插件配置页设置。
+version: v1.1.1
+author: 鲸鱼娘
+repo: https://github.com/wey-gao/astrbot_plugin_openclaw
+astrbot_version: ">=4.24.0"

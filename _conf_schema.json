@@ -1,0 +1,146 @@
+{
+  "enable": {
+    "description": "总开关",
+    "type": "bool",
+    "hint": "关掉后指令和工具都不派活。",
+    "default": true
+  },
+  "bridge_url": {
+    "description": "薄壳地址",
+    "type": "string",
+    "hint": "默认 http://127.0.0.1:18790 ，对应 bridge/config.json 里的 port。",
+    "default": "http://127.0.0.1:18790"
+  },
+  "default_model": {
+    "description": "默认模型",
+    "type": "string",
+    "hint": "留空则用薄壳自己配置的 default_model。格式 provider/model-id。",
+    "default": ""
+  },
+  "task_timeout": {
+    "description": "单次任务超时(秒)",
+    "type": "int",
+    "hint": "默认 120，薄壳上限 300，超时会连子进程一起杀。",
+    "default": 120
+  },
+  "max_prompt_chars": {
+    "description": "任务长度上限(字)",
+    "type": "int",
+    "hint": "超过直接拒绝，默认 4000，别超薄壳的 6000。",
+    "default": 4000
+  },
+  "reply_chunk": {
+    "description": "回复分段长度(字)",
+    "type": "int",
+    "hint": "结果太长时按这个长度分条发，默认 1200。",
+    "default": 1200
+  },
+  "auto_start": {
+    "description": "薄壳没起来时自动拉起",
+    "type": "bool",
+    "hint": "派活前先探 /health，不通就交给 svc.py 拉起网关+薄壳。",
+    "default": true
+  },
+  "start_script": {
+    "description": "兜底启动脚本",
+    "type": "string",
+    "hint": "兜底用的启动脚本，留空就用安装目录里的 start_openclaw.bat。",
+    "default": ""
+  },
+  "owner_only": {
+    "description": "只有主人能派活",
+    "type": "bool",
+    "hint": "开着时其他人发指令会被拦，LLM 工具也不对他们开放。",
+    "default": true
+  },
+  "owner_ids": {
+    "description": "主人 QQ 号",
+    "type": "list",
+    "hint": "白名单，填你自己的 QQ 号，可填多个。留空=不按人拦（群聊还受 allow_group 管）。发布版必须自己填。",
+    "default": []
+  },
+  "allow_group": {
+    "description": "允许群聊派活",
+    "type": "bool",
+    "hint": "关掉就只认私聊。",
+    "default": false
+  },
+  "llm_tool_enable": {
+    "description": "开放 LLM 工具",
+    "type": "bool",
+    "hint": "开着时我可以自动调 openclaw_task 派活、调 openclaw_setup 装/开/关。",
+    "default": true
+  },
+  "install_dir": {
+    "description": "OpenClaw 安装目录",
+    "type": "string",
+    "hint": "留空自动挑：优先 AstrBot 数据目录里的 openclaw 子文件夹（和 plugins 同级，跟别的插件住一块）；若 AstrBot 装在系统盘，就换成剩余空间最大的非系统盘下的 AstrBot\\openclaw。",
+    "default": ""
+  },
+  "prewarm": {
+    "description": "AstrBot 启动就拉起小龙虾",
+    "type": "bool",
+    "hint": "插件加载时顺手起网关+薄壳，并挂看门狗盯住 AstrBot 进程。",
+    "default": true
+  },
+  "stop_on_exit": {
+    "description": "AstrBot 关闭时停掉小龙虾",
+    "type": "bool",
+    "hint": "插件被卸载/关闭时全停并清残存；异常退出由看门狗兜底。",
+    "default": true
+  },
+  "auto_install": {
+    "description": "启动时没装就自动安装",
+    "type": "bool",
+    "hint": "关着更安全（默认关），要装发 /claw_install 或让 AI 调 openclaw_setup。",
+    "default": false
+  },
+  "node_version": {
+    "description": "便携 Node 版本",
+    "type": "string",
+    "hint": "自动装 Node 时用，默认 v24.22.2（win-x64 便携包）。",
+    "default": "v24.22.2"
+  },
+  "node_mirror": {
+    "description": "Node 下载镜像",
+    "type": "string",
+    "hint": "默认 https://npmmirror.com/mirrors/node ，失败会自动回退 nodejs.org。",
+    "default": "https://npmmirror.com/mirrors/node"
+  },
+  "npm_registry": {
+    "description": "npm 源",
+    "type": "string",
+    "hint": "默认 https://registry.npmmirror.com ，国内快。",
+    "default": "https://registry.npmmirror.com"
+  },
+  "provider_base_url": {
+    "description": "模型接口地址（装的时候写进 openclaw.json）",
+    "type": "string",
+    "hint": "OpenAI 兼容地址，例：https://xxx/v1 。只在首次安装写，已有配置不动。",
+    "default": ""
+  },
+  "provider_api_key": {
+    "description": "模型 Key",
+    "type": "string",
+    "hint": "同上，只在首次安装写入。",
+    "default": ""
+  },
+  "provider_model": {
+    "description": "模型 ID",
+    "type": "string",
+    "hint": "例：glm-5.3-flash 或 provider/model-id。",
+    "default": ""
+  },
+  "gateway_port": {
+    "description": "网关端口",
+    "type": "int",
+    "hint": "OpenClaw 网关本地端口，默认 18789。",
+    "default": 18789
+  },
+  "bridge_port": {
+    "description": "薄壳端口",
+    "type": "int",
+    "hint": "薄壳 HTTP 端口，默认 18790，要和 bridge_url 对上。",
+    "default": 18790
+  }
+}

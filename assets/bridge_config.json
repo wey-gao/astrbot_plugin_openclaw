@@ -1,0 +1,24 @@
+{
+  "port": 18790,
+  "node_dir": "node-v24.22.2-win-x64",
+  "default_model": "",
+  "task_timeout_seconds": 120,
+  "max_task_timeout_seconds": 300,
+  "max_prompt_chars": 6000,
+  "max_reply_chars": 4000,
+  "dedup_seconds": 90,
+  "rate_limit_per_hour": 20,
+  "max_concurrent": 1,
+  "fail_streak_limit": 3,
+  "cooldown_seconds": 600,
+  "forbid_patterns": [
+    "claw.py",
+    "bridge.py",
+    "openclaw agent",
+    "openclaw.cmd",
+    "18790",
+    "再调用一次你自己",
+    "循环调用",
+    "无限循环"
+  ]
+}

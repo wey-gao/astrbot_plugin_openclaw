@@ -1,0 +1,30 @@
+# 发布步骤（v1.1.1）
+
+## 唯一必改项
+`metadata.yaml` 里这行，把「你的GitHub用户名」换成你的账号名：
+repo: https://github.com/你的GitHub用户名/astrbot_plugin_openclaw
+
+## 推上去
+1. https://github.com/new 建仓库 `astrbot_plugin_openclaw`，内测先勾 Private，不要勾自动生成 README/LICENSE
+2. 在本目录执行：
+
+git init -b main
+git add -A
+git -c user.name="你的名字" -c user.email="你的邮箱" commit -m "release: v1.1.1"
+git tag v1.1.1
+git remote add origin https://github.com/你的GitHub用户名/astrbot_plugin_openclaw.git
+git push -u origin main --tags
+
+3. Releases → Draft a new release → tag 选 v1.1.1 → 把本包作为附件上传
+
+## 装的人怎么办
+把本包解压出的 astrbot_plugin_openclaw 整个目录丢进 AstrBot 的 data/plugins/，重载插件，
+填好 provider_base_url（带 /v1）、provider_api_key、provider_model、owner_ids，然后私聊 /claw_install。
+详细验证清单见包内《测试须知.md》。
+
+## 发前最后一眼
+- [ ] repo 地址已填真实用户名
+- [ ] 仓库为 Private（内测阶段）
+- [ ] 无 __pycache__、无 .log、无真实 Key
+- [ ] assets/VERSION 与 metadata 版本同为 1.1.1
+- [ ] 提醒使用者 OpenClaw ≥ 2026.1.29（CVE-2026-25253）
